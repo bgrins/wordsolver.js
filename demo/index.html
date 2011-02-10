@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<title>Wordsolver Demo</title>
+<link rel="stylesheet" href="screen.css" type="text/css" media="screen, projection"> 
+
+</head>
+<body>
+
+<div class='container'>
+<h1>Word Solver</h1>
+
+<input type='text' id='inputletters' placeholder="Enter your letters" /> 
+<button id='go'>go!</button>
+
+<select id='dictionaries' name='dictionaries'>
+	<option value="twl" selected="selected">TWL</option>
+	<option value="sowpods">SOWPODS</option>
+	<option value="ospd4">OSPD4</option>
+</select>
+<div class='hide' id='dictionary-loading'>Loading dictionary (<span class='dictionary'></span>)</div>
+<div class='hide error' id='error-dictionary'>Dictionary is not quite loaded - it is pretty big... (<span class='dictionary'></span>)</div>
+<div class='hide error' id='error-input'>
+There are too many letters (it's for your browser's own good).  The max is <span id='max-letters'></span> letters, and <span id='max-wildcards'></span> wildcards.
+</div>
+<div class='hide' id='status-solving'>Processing...</div>
+<div class='hide' id='result-details'>Processing...</div> 
+<ul id='results'></ul>
+
+</div>
+
+
+<script type='text/javascript' src='jquery-1.4.2.min.js'></script>
+<script type='text/javascript' src='../wordsolver.js'></script>
+<script type='text/javascript' src='demo.js'></script>
+
+</body>
+</html>

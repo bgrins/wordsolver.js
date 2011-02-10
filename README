@@ -1,0 +1,12 @@
+wordsolver.js
+
+var results = wordsolver.solve("rtaece", {
+	'cat': 1,
+	'cart: 1,
+	'care: 1
+});
+
+results == {"3":["cat"],"4":["care","cart"]}
+
+results is a hash split into values with key as the number of letters and value as the array
+of letters found with that number of letters.
