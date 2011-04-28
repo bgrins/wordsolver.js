@@ -38,20 +38,26 @@ var dictionaries = {
 	'twl': false,
 	'ospd4': false
 };
+
 var storage = localStorage || { };
 
 function loadDictionary(id) {
 	var loading = $("#dictionary-loading");
 	$("#error-dictionary").hide();
 	
-	if (storage[id]) {
+	if (storage[id] && storage[id].length) {
 		doLoad(storage[id]);
 	}
 	else {
 		loading.show().find(".dictionary").text(id);
-		$.get('../words/' + id, function(data) {
-			// copy array into object to make word lookups easier
+		$.get('words/' + id, function(data) {
+		
+			// copy words into localstorage 
+			// (if there is room for it) to prevent extra requests
+			try {
 			storage[id] = data;
+			} catch(e) { }
+			
 			doLoad(data);
 		});
 	}
