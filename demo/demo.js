@@ -38,22 +38,32 @@ var dictionaries = {
 	'twl': false,
 	'ospd4': false
 };
+var storage = localStorage || { };
 
 function loadDictionary(id) {
 	var loading = $("#dictionary-loading");
 	$("#error-dictionary").hide();
-	loading.show().find(".dictionary").text(id);
 	
-	$.get('../words/' + id, function(data) {
-		// copy array into object to make word lookups easier
-		var words = data.split(' ');
+	if (storage[id]) {
+		doLoad(storage[id]);
+	}
+	else {
+		loading.show().find(".dictionary").text(id);
+		$.get('../words/' + id, function(data) {
+			// copy array into object to make word lookups easier
+			storage[id] = data;
+			doLoad(data);
+		});
+	}
+	
+	function doLoad(allWords) {
+		var words = allWords.split(' ');
 		var dictionary = { };
 		for (var i in words) { dictionary[words[i]] = 1; }
 		dictionaries[id] = dictionary;
 
 		loading.fadeOut();
-	});
-	
+	}
 };
 
 
